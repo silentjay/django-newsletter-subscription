@@ -4,12 +4,13 @@ from django.views.decorators.http import require_POST
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 
 from newsletter_subscription.utils import send_subscription_mail
 
 
 @require_POST
-@csrf_protect
+@csrf_exempt
 def ajax_subscribe(request, backend):
     email = request.POST.get('subscription_email', '')
 
